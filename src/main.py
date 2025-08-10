@@ -1,5 +1,6 @@
 from textnode import TextNode, TextType
 from htmlnode import HTMLNode, LeafNode, ParentNode
+from blocktype import BlockType, block_to_block_type
 import re
 
 def main():
@@ -105,7 +106,7 @@ def markdown_to_blocks(markdown):
     for i in range(len(blocks)):
         blocks[i].strip()
         if blocks[i] == '':
-            blocks.remove(b)
+            blocks.remove(blocks[i])
     return blocks
 
 
