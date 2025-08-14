@@ -1,5 +1,5 @@
 import unittest
-from main import *
+from split_nodes import *
 from textnode import *
 
 class TestTextToNodes(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from main import *
+from split_nodes import *
 from blocktype import *
 
 class TestBlockType(unittest.TestCase):
