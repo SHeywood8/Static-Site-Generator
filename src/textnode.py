@@ -24,6 +24,6 @@ class TextNode():
     def __repr__(self):
         string = f'TextNode("{self.text}", {self.text_type.value}'
         if self.url is not None:
-            string += f', {self.url}'
+            string += f', "{self.url}"'
         string += ')'
         return string

@@ -29,12 +29,12 @@ class HTMLNode():
             string += f'value = {self.value}'
             value = True
         if self.children is not None:
-            if value:
+            if value or tag:
                 string += ', '
             string += f'children = {self.children}'
             children = True
         if self.props is not None:
-            if children:
+            if children or value or tag:
                 string += ', '
             string += f'props ={self.props_to_html()}'
         string += ')'
@@ -49,6 +49,11 @@ class LeafNode(HTMLNode):
             raise ValueError ("value is a required argument")
         if self.tag is None:
             return self.value
+        if self.props is not None:
+            if self.tag == "img":
+                return f'<{self.tag}{self.props_to_html()}/>'
+            elif self.tag == "a":
+                return f'<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>'
         return f'<{self.tag}>{self.value}</{self.tag}>'
 
 class ParentNode(HTMLNode):

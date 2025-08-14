@@ -16,12 +16,13 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
             if len(parts) % 2 == 0:
                 raise Exception ("Invalid markdown")
             for i in range(len(parts)):
-                if i % 2 == 0:
-                    if parts[i] == '':
-                        continue
-                    new_nodes.append(TextNode(parts[i], TextType.TEXT))
-                else:
-                    new_nodes.append(TextNode(parts[i], text_type))
+                if parts[i] != "":
+                    if i % 2 == 0:
+                        if parts[i] == '':
+                            continue
+                        new_nodes.append(TextNode(parts[i], TextType.TEXT))
+                    else:
+                        new_nodes.append(TextNode(parts[i], text_type))
     return new_nodes
 
 def split_nodes_image(old_nodes):
@@ -40,7 +41,7 @@ def split_nodes_image(old_nodes):
                     new_nodes.append(TextNode(parts[0], TextType.TEXT))
                 new_nodes.append(TextNode(match[0], TextType.IMAGE, match[1]))
                 text_to_edit = match_string.join(parts[1:])
-            if text_to_edit != '':
+            if text_to_edit != "":
                 new_nodes.append(TextNode(text_to_edit, TextType.TEXT))
     return new_nodes
 

@@ -11,7 +11,9 @@ def markdown_to_html_node(markdown):
         block_type = block_to_block_type(block)
         match block_type:
             case BlockType.QUOTE:
-                text = block.replace(">", "")
+                lines = block.split("\n")
+                lines = [line.replace(">", "").strip() for line in lines]
+                text = "\n".join(lines)
                 block_node = ParentNode(tag = "blockquote", children = text_to_children(text))
             
             case BlockType.UNORDERED_LIST:
